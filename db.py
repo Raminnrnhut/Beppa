@@ -1,4 +1,4 @@
-import sqlite3, os, datetime
+import sqlite3, os, datetime, hashlib
 
 DB_PATH = os.path.join(os.path.dirname(__file__), "beppa.db")
 
@@ -16,3 +16,6 @@ def init_db():
 
 def now_iso():
     return datetime.datetime.utcnow().isoformat(timespec="seconds")+"Z"
+
+def hash_password(pw: str) -> str:
+    return hashlib.sha256(pw.encode("utf-8")).hexdigest()
